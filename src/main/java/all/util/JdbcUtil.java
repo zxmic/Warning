@@ -8,13 +8,6 @@ import java.io.InputStream;
 import java.sql.*;
 import java.util.Properties;
 
-/**
- * @ClassName JdbcUtil
- * @Description TODO
- * @Author Liyihe
- * @Date 2019/08/25 上午1:20
- * @Version 1.0
- */
 public class JdbcUtil {
     private static volatile HikariDataSource ds;
     private static Properties properties=new Properties();

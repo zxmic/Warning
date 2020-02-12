@@ -9,13 +9,7 @@ import com.aliyuncs.profile.DefaultProfile;
 
 import java.util.Random;
 
-/**
- * @ClassName SendCodeUtil
- * @Description 阿里云验证码工具类
- * @Author Liyihe
- * @Date 19-8-18 下午1:49
- * @Version 1.0
- */
+
 public class SendCodeUtil {
     private static final String regionId = "cn-hangzhou";
     private static final String accessKeyId = "LTAIBHBFbhKxDBTU";

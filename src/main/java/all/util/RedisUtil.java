@@ -4,13 +4,7 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
-/**
- * @ClassName RedisUtil
- * @Description Redis工具类
- * @Author Liyihe
- * @Date 2020/01/06 下午10:30
- * @Version 1.0
- */
+
 public class RedisUtil {
 
     private static volatile JedisPool pool = null;
