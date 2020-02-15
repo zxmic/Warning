@@ -16,12 +16,7 @@ import java.nio.charset.Charset;
  */
 public class ServerHandler extends SimpleChannelInboundHandler<HttpObject> {
     //服务器数据处理
-    @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-
-
-
-    }
+   
     //channelRead0读取客户端数据
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, HttpObject msg) throws Exception {
