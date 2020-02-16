@@ -9,11 +9,10 @@ import com.aliyuncs.profile.DefaultProfile;
 
 import java.util.Random;
 
-
 public class SendCodeUtil {
     private static final String regionId = "cn-hangzhou";
-    private static final String accessKeyId = "LTAIBHBFbhKxDBTU";
-    private static final String secret = "gibydtl1h2tUHxAr6FFq45cZMyf3ob";
+    private static final String accessKeyId = "LTAI4FrtpF3XXaYeQ895kMfF";
+    private static final String secret = "6U5E3KwPJaNT0axCTVliavvvLwzySX";
     private static final DefaultProfile profile = DefaultProfile.getProfile(regionId, accessKeyId, secret);
     private static final String domain = "dysmsapi.aliyuncs.com";
     private static final String action = "SendSms";
@@ -21,13 +20,13 @@ public class SendCodeUtil {
     private static final String RegionId = "RegionId";
     private static final String PhoneNumbers = "PhoneNumbers";
     private static final String SignName = "SignName";
-    private static final String SignName_V = "远程在线授课";
+    private static final String SignName_V = "交通事故自救报警App";
     private static final String TemplateCode = "TemplateCode";
-    private static final String TemplateCode_V = "SMS_172597673";
+    private static final String TemplateCode_V = "SMS_183765981";
     private static final String TemplateParam = "TemplateParam";
     private static final Random random = new Random();
-    private static final int random_max = 89999;
-    private static final int random_min = 10000;
+    private static final int random_max = 8888;
+    private static final int random_min = 1111;
 
  /*   public static void main(String[] args) {
         long start = System.currentTimeMillis();
