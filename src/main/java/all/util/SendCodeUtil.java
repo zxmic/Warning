@@ -28,12 +28,13 @@ public class SendCodeUtil {
     private static final int random_max = 88888;
     private static final int random_min = 11111;
 
+    /*
     public static void main(String[] args) {
         long start = System.currentTimeMillis();
         sendCode("13752275462");
         System.out.println(System.currentTimeMillis() - start);
     }
-
+    */
     public static String sendCode(String phonenumber) {
         IAcsClient client = new DefaultAcsClient(profile);
         CommonRequest request = new CommonRequest();
