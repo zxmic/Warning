@@ -104,6 +104,11 @@
             <artifactId>mongo-java-driver</artifactId>
             <version>3.0.4</version>
         </dependency>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>4.1.36.Final</version>
+        </dependency>
     </dependencies>
 
 </project>
