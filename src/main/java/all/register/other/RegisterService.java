@@ -16,6 +16,7 @@ public class RegisterService {
         return flag;
     }
 
+    //修改绑定手机号
     public boolean userUpdatePhone(String userid, String phonenumber){
         User user=userSelect(userid);
         boolean flag=false;
@@ -24,6 +25,15 @@ public class RegisterService {
         }
         return flag;
 
+    }
+
+    public boolean phoneUpdatePass(String phonenumber, String pass){
+        User user = registerDao.userSelectByPhone(phonenumber);
+        boolean flag=false;
+        if(user!=null){
+            flag=registerDao.phoneUpdatePass(phonenumber,pass);
+        }
+        return flag;
     }
 
     public User userSelect(String userid){

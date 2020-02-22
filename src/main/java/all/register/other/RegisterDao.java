@@ -58,6 +58,41 @@ public class RegisterDao {
         return true;
     }
 
+    public boolean phoneUpdatePass(String phonenumber, String pass){
+        try{
+            String sql = "update user set password= '"+pass+"' WHERE phonenumber='"+phonenumber+"'";
+            stmt.execute(sql);
+        }catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+
+    }
+
+    public User userSelectByPhone(String phonenumber){
+
+        User user=new User();
+        String sql="select userid,phonenumber,password from user where phonenumber ='"+phonenumber+"'";
+        try {
+            rs=stmt.executeQuery(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            if(rs.next()){
+                user.setUserid(rs.getInt("userid"));
+                user.setPhoneNumber(rs.getString("phonenumber"));
+                user.setPassword(rs.getString("password"));
+                return user;
+            }
+        } catch (SQLException e) {
+            System.out.println("没有搜索到user信息");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public User userSelect(String userid){
 
         User user=new User();
