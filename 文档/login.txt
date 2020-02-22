@@ -1,0 +1,51 @@
+用户名密码登录
+url:/all/login/logins/Login/loginM
+请求数据：
+类型:json
+{
+    "phoneNumber":"12345678912"
+    "password":"12345678912"
+}
+1、"phoneNumber"：电话号码
+2、"password"：密码
+返回数据：
+类型：json
+{
+    "userid":"12345678912"
+    "token":"xxx"
+    "msg":"xxx"
+}
+1、token携带免密登录信息
+        值为"token",无意义
+2、"msg":具体信息
+        Success_Login：用户名密码输入正确，登录成功
+        WrongPassword：密码输入错误，请重新输入密码
+        Not_Register：没有注册信息，需要新注册才可使用
+        Wrong_Login：不可使用的账号，账号本身存在问题，该用户存在攻击性
+        Attack!:该用户输入账号密码不规范，可能试图盗取数据库信息
+        Lack_Info:用户未填写账号或密码
+3、"userid"：具体信息
+        userid：没有对应userid，默认值，无意义
+
+
+--------------------------------------------------------------------------------------
+免密登录，发送token
+url:/all/login/logins/Token/getToken
+请求数据：
+类型：json
+{
+    "userid":"12345678912"
+    "token":"xxx"
+}
+返回数据：
+类型：json
+{
+    "userid":"12345678912"
+    "token":"xxx"
+    "msg":"xxx"
+}
+1、token 免密登录成功一次，更新一次
+2、"msg"具体信息：
+        Success_Login：免密登录成功
+        Fail_Login：免密失败，需要重新输入用户名密码
+        Attack!:该用户的token不规范，可能试图盗取数据库信息

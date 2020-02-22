@@ -1,0 +1,106 @@
+1、
+coderegister  用于号码注册
+请求参数
+{
+    "phonenumber":"12345678912"
+}
+返回参数
+{
+    "msg":"xxx"
+}
+msg具体信息
+    Wrongphone：非可用手机号
+    Haveregister:账号已注册
+    Havesend:验证码已经发送，等待60s之后再试
+    Sendsuccess：验证码发送成功
+    Wrong：json转化失败
+
+2、
+codeforget  用于忘记密码找回
+{
+    "phonenumber":"12345678912"
+}
+返回参数
+{
+    "msg":"xxx"
+}
+msg具体信息
+    Wrong：json转化失败
+    Havesend：五分钟内发送过验证码，要等待五分钟
+    Sendsuccess:验证码发送成功
+    Newuser:非已注册用户，该号码不可用于密码找回
+    Wrongphone:非11位可用手机号
+
+
+3、
+codechange  用于修改绑定号码
+请求参数
+{
+    "phonenumber":"12345678912"
+    "userid":"xxx"
+}
+返回参数
+{
+    "msg":"xxx"
+    "userid":"xxx"
+}
+msg具体信息
+    Samephone:相同的绑定号码
+    Wrongphone：非11位可用手机号
+    Sendsuccess:验证码发送成功
+    Havebend:新号码已经有绑定账号，不可用于绑定
+
+4、
+register请求参数
+{
+    "phonenumber":"12345678912"
+    "code":"45678"
+    "password":"123456"
+}
+返回参数
+{
+    "msg":"xxxx"
+}
+msg具体信息
+    Haveregister:账号已注册，请前往登录页面
+    Registerok:注册成功
+    Falsecode：验证码错误
+    Resendcode：请再次发送验证码
+
+
+5、
+changePass  用于忘记密码找回
+{
+    "phonenumber":"12345678912"
+    "code":"xxx"
+    "password":"123456"
+}
+返回参数
+{
+    "msg":"xxx"
+}
+msg具体信息
+    Wrong：json转化失败
+    Changesuccess：密码修改成功
+    Changefalse:密码修改失败
+    Unsamecode:验证码不一致
+    Noregister:该用户没有注册过，不可用于找回密码
+
+6、
+changePhone  用于修改绑定手机
+{
+    "phonenumber":"12345678912"
+    "userid":xxx
+    "code":xxx
+}
+返回参数
+{
+    "msg":"xxx"
+    "userid":xxx
+}
+msg具体信息
+    Wrong：json转化失败
+    Changesuccess：密码绑定成功
+    Changefalse:密码绑定失败
+    Falsecode:验证码不一致
+    Sendcode:请先发送验证码
