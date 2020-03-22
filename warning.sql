@@ -31,6 +31,9 @@ CREATE TABLE `action` (
   `callplace` varchar(255) DEFAULT NULL,
   `describes` varchar(255) DEFAULT NULL,
   `state` varchar(255) DEFAULT NULL,
+  `actionusername` varchar(255) DEFAULT NULL,
+  `carnumber` varchar(255) DEFAULT NULL,
+  `picture` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`actionid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=gbk;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -106,13 +109,15 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
-  `userid` int(11) NOT NULL,
+  `userid` bigint(20) NOT NULL,
   `username` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `phonenumber` varchar(255) DEFAULT NULL,
   `driveage` int(11) DEFAULT NULL,
   `idnumber` varchar(18) DEFAULT NULL,
   `headpicture` varchar(255) DEFAULT NULL,
+  `carsure` int(1) DEFAULT NULL,
+  `peoplesure` int(1) DEFAULT NULL,
   PRIMARY KEY (`userid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=gbk;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -123,6 +128,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (143863537264103424,NULL,'123456','13752275462',NULL,NULL,NULL,0,0);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -135,4 +141,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-02-14 14:29:11
+-- Dump completed on 2020-03-22 12:01:04
