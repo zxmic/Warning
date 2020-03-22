@@ -25,9 +25,19 @@ public class Login {
         JSONObject json = new JSONObject();
         User user=null;
         try{
-            JSONObject jsonObject = JSONObject.parseObject(data);
-            user = JSON.toJavaObject(jsonObject,User.class );
+            user= JSON.parseObject(data,User.class);
+//            JSONObject jsonObject = JSONObject.parseObject(data);
+//            user = JSON.toJavaObject(jsonObject,User.class );
+
+//            JSONObject jsonObject = JSONObject.parseObject(data);
+//            user = (User) JSONObject.parseObject(String.valueOf(jsonObject), User.class);
+//            user = jsonObject.getObject()
+//            String phonenumber=jsonObject.getString("phoneNumber");
+//            String password=jsonObject.getString("password");
+//            user.setPassword(password);
+//            user.setPhoneNumber(phonenumber);
         }catch (JSONException e){
+            e.printStackTrace();
             json.put("msg","Attack!");
             return json.toString();
         }
@@ -107,7 +117,7 @@ public class Login {
         if(jedis.hexists("phonenumber",user.getPhoneNumber())){
             //在hashmap中找到userid
             userid=jedis.hget("phonenumber",user.getPhoneNumber());
-            user.setUserid(Integer.parseInt(userid));
+            //user.setUserid(Integer.parseInt(userid));
             //查询redis是否存在账号密码
             if(jedis.exists("p"+user.getPhoneNumber())){
                 //4、redis存在账号密码，且密码正确,登录成功

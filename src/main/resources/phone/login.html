@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <script src="jquery-3.4.1.js"></script>
+</head>
+<body>
+
+<script type="text/javascript">
+    // var socket;
+    // if(window.WebSocket){
+    //     socket = new WebSocket("ws://localhost:8080/ws");
+    //
+    //     //回调方法
+    //     socket.onmessage = function (event) {
+    //         // var ta=document.getElementById("responseText");
+    //         // ta.value=ta.value+"\n"+event.data;
+    //     }
+    //
+    //     socket.onopen = function (event) {
+    //         // var ta = document.getElementById("responseText");
+    //         // ta.value="连接开启！";
+    //     }
+    //
+    //     socket.onclose = function (event) {
+    //         // var ta = document.getElementById("responseText");
+    //         // ta.value=ta.value+"\n"+"连接关闭！";
+    //     }
+    //
+    // }else {
+    //     alert("浏览器不支持websocket")
+    // }
+    //
+    // function send(message) {
+    //     if(!window.WebSocket){
+    //         return;
+    //     }
+    //
+    //     if(socket.readyState ==WebSocket.OPEN){
+    //         socket.send(message);
+    //     }else {
+    //         alert("连接尚未开启！");
+    //     }
+    // }
+
+    //var a=document.getElementById('login');
+    // $("#but").click(function(){
+    //     // var ph=$('login_tel').val();
+    //     // var passw=$('login_pwd').val();
+    //     $.ajax({
+    //         type: "post",//数据发送的方式（post 或者 get）
+    //         // head: "application/json; charset=UTF-8",
+    //         url: "http://localhost:8080/login/Loginall/login",//要发送的后台地址
+    //         data:{
+    //             phoneNumber:"13752275462",
+    //             password:"123456"
+    //         },
+    //             //'{"phoneNumber":"'+ph+'","password":"'+passw+'"}', //要发送的数据（参数）格式
+    //         dataType: "json",//后台处理后返回的数据格式
+    //         //  traditional: true,                 //  加上序列化参数
+    //         success: function (data) {//ajax请求成功后触发的方法
+    //             console.log(data);
+    //             //此时的data为json格式 [object] 如果你想查看
+    //             // var datatext = JSON.stringify(data); //转为字符串
+    //             // $("resDiv").append(datatext); //在div中加上json转为字符串的数据
+    //             alert('请求成功');
+    //         },
+    //         error: function (msg) {//ajax请求失败后触发的方法
+    //             //  $('#resDiv').html(data); //请求失败
+    //             alert(msg+"请求失败");//弹出错误信息
+    //         }
+    //     });
+    // })
+
+
+
+    $(document).ready(function(){
+        var tell=$("#login_tel").val();
+        var pass=$("#login_pwd").val();
+        $("#btn1").click(function(){
+            $.ajax({
+                type: "post",//数据发送的方式（post 或者 get）
+                // head: "application/json; charset=UTF-8",
+                url: "http://localhost:8080/login/Loginall/login",//要发送的后台地址
+                data:'{"userid" :"110","phoneNumber":"'+tell+'","password":"'+pass+'"}',
+                //'{"phoneNumber":"'+ph+'","password":"'+passw+'"}', //要发送的数据（参数）格式
+                dataType: "json",//后台处理后返回的数据格式
+                //  traditional: true,                 //  加上序列化参数
+                success: function (data) {//ajax请求成功后触发的方法
+                    console.log(data);
+                    var id = data.userid;
+                    var msg=data.msg;
+                    var token=data.token;
+                    if(msg=="Success_Login"){
+                        jump1(id,msg,token);
+                    }else {
+                        //document.getElementById("login_tel").value="";
+                        document.getElementById("login_pwd").value="";
+                        alert("输入有误，请重新输入");
+                    }
+
+                    //alert(id+msg+token)
+                    //此时的data为json格式 [object] 如果你想查看
+                    // var datatext = JSON.stringify(data); //转为字符串
+                    // $("resDiv").append(datatext); //在div中加上json转为字符串的数据
+
+                    //window.location.href='hello.html';
+                },
+                error: function (msg) {//ajax请求失败后触发的方法
+                    //  $('#resDiv').html(data); //请求失败
+                    alert(msg+"请求失败");//弹出错误信息
+                }
+            });
+        })
+    })
+
+
+    function jump1(id,msg,token){
+        url = "callpolice.html?userid="+id+"&msg="+msg+"&token="+token;//此处拼接内容
+        window.location.href = url;
+    }
+
+    // $("#login").click(function(){
+    //     $.ajax({
+    //         url:'http://localhost:8080/login/Loginall/login',
+    //         data:{
+    //             phoneNumber:$('login_tel').val(),
+    //             password:$('login_pwd').val()
+    //         },
+    //         type:'POST',
+    //         dataType:"json", //返回类型 TEXT字符串 JSON XML
+    //         success:function(str){ //成功回调函数
+    //             alert(str);
+    //             window.location.href = "callpolice.html";
+    //         },
+    //         error:function (err){ //失败回调函数
+    //             alert(err);
+    //         }
+    //     });
+    // })
+</script>
+
+
+
+
+<div class="content" id="contents">
+    <div class="main">
+        <div class="login">
+            <h3 >登录</h3>
+            <form method="post" onsubmit="return false;">
+                <div class="name">
+                    <input type="text" id="login_tel"placeholder="手机号" value="13752275462">
+                </div>
+                <div class="pwd">
+                    <input type ="password "id="login_pwd"placeholder="密码" value="123456">
+                </div>
+                <td>
+                <td> <input type ="button" name="forgetpassword" value="忘记密码" style="background-color: aliceblue"onclick="location.href='忘记密码.html'"></td>
+                <td><input type ="button" name="regist" value="注册" style="background-color: aliceblue"onclick="location.href='注册.html'"></td>
+                <td><button id="btn1" type="button">登录</button></td>
+                </tr>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

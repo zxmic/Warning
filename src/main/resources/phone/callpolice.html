@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我要报警</title>
+    <script src="jquery-3.4.1.js"></script>
+    <script src="jquery.params.js"></script>
+</head>
+<body>
+
+<script type="text/javascript">
+    //获取前页传来数据
+    $(function(){
+        getData1();
+    });
+
+    function getData1(){
+        var id = $.query.get("userid");
+        var token = $.query.get("token");
+
+        //$("#description").text(id+"   :   "+token);
+
+    }
+
+    处理本页数据
+    $(document).ready(function(){
+        var name=$("#name").val();
+        var carnumber=$("#carnumber").val();
+        var phonenumber=$("#phonenumber").val();
+        var place=$("#place").val();
+        var description=$("#description").val();
+        var picture=$("#picture").val();
+        var actionid="110";
+        var carid="110";
+        $("#sure").click(function(){
+            $.ajax({
+                type: "post",
+                url: "http://localhost:8080/login/Loginall/login",
+                data:'{"userid" :"'+id+'","phoneNumber":"'+tell+'","password":"'+pass+'"}',
+                //'{"phoneNumber":"'+ph+'","password":"'+passw+'"}', //要发送的数据（参数）格式
+                dataType: "json",//后台处理后返回的数据格式
+                //  traditional: true,                 //  加上序列化参数
+                success: function (data) {//ajax请求成功后触发的方法
+                    console.log(data);
+                    var id = data.userid;
+                    var msg=data.msg;
+                    var token=data.token;
+                    if(msg=="Success_Login"){
+                        jump1(id,msg,token);
+                    }else {
+                        document.getElementById("login_pwd").value="";
+                        alert("输入有误，请重新输入");
+                    }
+                },
+                error: function (msg) {//ajax请求失败后触发的方法
+                    alert(msg+"请求失败");//弹出错误信息
+                }
+            });
+        })
+    })
+</script>
+<div class="content">
+            <h3 >我要报警</h3>
+            <form action=" "method="post">
+                <table>
+                <tr><td>*车主名</td>
+                    <td><input type="text" id="name"></td></tr>
+                <tr><td>*车牌号</td>
+                    <td><input type="text" id="carnumber"></td></tr>
+                <tr><td>*手机号</td>
+                    <td><input type="text" id="phonenumber"></td></tr>
+                <tr><td>*定位路段</td>
+                    <td><input type="button" id="place" value="自动定位" style="background-color: aliceblue" onclick="location.href='autoposition.html'"></td></tr>
+                <tr><td>*具体描述</td>
+                    <td><textarea cols="40" id="description" rows="10" style="overflow-y:scroll"></textarea></td></tr>
+                <tr><td>图片信息</td>
+                    <td><input type="file" id="picture"></td></tr>
+                <tr><td><input type="button" id="sure" value="确认报警" style="background-color: azure;"></td></tr>
+                    <tr><td><input type="button" name="我要报警" value="我要报警" style="background-color: aliceblue" onclick="location.href='callpolice.html'"></td>
+                        <td><input type="button" name="报警记录" value="报警记录" style="background-color: aliceblue" onclick="location.href='policelog.html'"></td>
+                        <td><input type="button" name="车辆信息" value="车辆信息" style="background-color: aliceblue" onclick="location.href='carmassage.html'"></td>
+                        <td><input type="button" name="我的" value="我     的"  style="background-color: aliceblue" onclick="location.href='my.html'"></td>
+                    </tr>
+
+                </table>
+            </form>
+</div>
+</body>
+</html>
